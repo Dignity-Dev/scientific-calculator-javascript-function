@@ -14,7 +14,13 @@ function appendToDisplay(value) {
 function calculateResult() {
     const display = document.getElementById('display');
     try {
-        display.value = eval(display.value);
+        let expression = display.value
+            .replace(/sin/g, 'Math.sin')
+            .replace(/cos/g, 'Math.cos')
+            .replace(/tan/g, 'Math.tan')
+            .replace(/log/g, 'Math.log10'); // Math.log10 is used for common logarithm (base 10)
+
+        display.value = eval(expression);
     } catch (e) {
         display.value = 'Error';
     }
